@@ -30,13 +30,13 @@
                     height: window.innerHeight + 'px'
                 },
                 owner:{
-                    name: 'iceCream',
+                    /*name: 'iceCream',
                     info: '每一个不曾起舞的日子，都是对生命的辜负',
                     menu: [{
                         id: 'menu1',
-                        menuName: 'W R I T E',
+                        menuName: 'H O M E',
                         menuLink: '/writeBlog'
-                    }/*,{
+                    },{
                         id: 'menu2',
                         menuName: 'W O R K S',
                         menuLink: '/homeWorks'
@@ -44,17 +44,18 @@
                         id: 'menu3',
                         menuName: 'A B O U T',
                         menuLink: 'homeAbout'
-                    }*/]
+                    }]*/
                 }
             }
         },
         beforeMount() {
+
             //加载博主数据
-            /*this.$axios.get('http://localhost:8080/blogs/owner',{}).then(resp => {
-                this.owner = resp.data;
+            this.$axios.get('http://localhost:8080/blogs/myInfo').then(resp => {
+                this.owner = resp.data.data;
             }).catch(err => {
                 console.log(err)
-            })*/
+            })
         }
     }
 </script>

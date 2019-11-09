@@ -5,6 +5,9 @@ import WriteBlog from "../page/WriteBlog.vue";
 import UserIndex from "../page/user/UserIndex.vue"
 import UserLogin from "../page/user/Login.vue"
 import UserRegister from "../page/user/Register.vue"
+import HomeMainBlog from "../page/HomeMainBlog.vue"
+import BlogPage from "../page/BlogPage.vue"
+import HomeWork from "../page/HomeWork.vue"
 
 var router = new VueRouter({
     routes:[
@@ -25,11 +28,38 @@ var router = new VueRouter({
         {
             path:'/blogsAdmin',
             component:BlogsAdmin,
-            redirect:'/writeBlog',
+            meta: {
+                requireAuth: true
+            },
+            redirect:'/homeMain',
             children: [
                 {
+                    path: '/homeMain',
+                    component: HomeMainBlog,
+                    meta: {
+                        requireAuth: true
+                    },
+                },
+                {
+                    path: '/blogPage/:id',
+                    component: BlogPage,
+                    meta: {
+                        requireAuth: true
+                    }
+                },
+                {
+                    path: '/homeWork',
+                    component: HomeWork,
+                    meta: {
+                        requireAuth: true
+                    }
+                },
+                {
                     path: '/writeBlog',
-                    component: WriteBlog
+                    component: WriteBlog,
+                    meta: {
+                        requireAuth: true
+                    }
                 }
             ]
         }

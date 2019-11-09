@@ -66,10 +66,11 @@
                                     type: 'warning'
                                 })
                             }else{
-                                this.$message({
+                                /*this.$message({
                                     message:resp.data.message,
                                     type:'success'
-                                })
+                                })*/
+                                /*this.sessionStorage.setItem('userId',resp.data.userId)*/
                                 this.$router.push({path:'/blogsAdmin'});
                             }
                         }).catch(err => {

@@ -1,22 +1,26 @@
 <template>
     <div>
-        <el-card :body-style="{ padding: '0px' }">
-            <img :src="blog.coverImg" class="image">
-            <div style="padding: 14px;">
-                <div class="myBlogName">
-                    {{ blog.title }}
-                </div>
-                <div class="myBlogContent" v-html="blog.contents">
-                </div>
-                <div class="myBlogTag">
-                    <el-tag type="info" style="margin-right: 15px" v-for="tag in blog.tagArr">{{ tag }}</el-tag>
-                </div>
-                <el-divider></el-divider>
-                <div class="bottom clearfix">
-                    <time class="time">{{ blog.timeStr }}</time>
-                </div>
+        <transition name="el-zoom-in-top">
+            <div v-show="showCard">
+                <el-card :body-style="{ padding: '0px' }">
+                    <img :src="blog.coverImg" class="image">
+                    <div style="padding: 14px;">
+                        <div class="myBlogName">
+                            {{ blog.title }}
+                        </div>
+                        <div class="myBlogContent" v-html="blog.contents">
+                        </div>
+                        <div class="myBlogTag">
+                            <el-tag type="info" style="margin-right: 15px" v-for="tag in blog.tagArr">{{ tag }}</el-tag>
+                        </div>
+                        <el-divider></el-divider>
+                        <div class="bottom clearfix">
+                            <time class="time">{{ blog.timeStr }}</time>
+                        </div>
+                    </div>
+                </el-card>
             </div>
-        </el-card>
+        </transition>
     </div>
 </template>
 
@@ -25,8 +29,9 @@
         name: "BlogPage",
         data(){
             return {
+                showCard:false,
                 blog: {
-                    id: 1,
+                    /*id: 1,
                     title: 'VUE使用指南',
                     info: '博客简介1',
                     coverImg: 'http://116.62.213.246/blogs/imgs/cover-img-default.jpg',
@@ -36,7 +41,7 @@
                         addr: ''
                     },
                     tagArr: ['标签一','标签二'],
-                    timeStr: '2019-09-07T05:55:07.226Z'
+                    timeStr: '2019-09-07T05:55:07.226Z'*/
                 }
             }
         },
@@ -51,6 +56,7 @@
             this.$axios.get('http://localhost:8080/blogs/blogContent?blogId=' + this.$route.params.id,{}).then(resp => {
                 console.log(resp)
                 this.blog = resp.data;
+                this.showCard = true;
             }).catch(err => {
                 console.log(err)
             })

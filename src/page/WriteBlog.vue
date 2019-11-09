@@ -2,7 +2,7 @@
     <div id = "WriteBlog" style="height: 100%">
         <!--<mark-down style="height: 100%" @on-save="save" @on-paste-image="pasteImage"/>-->
         <el-container style="height: 100%">
-            <el-header style="height: 25%;padding-top: 3%">
+            <el-header style="height: 20%;padding-top: 3%">
                 <el-form :model="blog" label-width="80px">
                 <!--<el-form :model="blog" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">-->
                     <el-form-item label="标题" required>
@@ -11,12 +11,12 @@
                     <el-form-item label="简介" prop="name">
                         <el-input v-model="blog.info"></el-input>
                     </el-form-item>
-                    <el-form-item label="标签" prop="name">
+                    <!--<el-form-item label="标签" prop="name">
                         <el-input v-model="blog.tags" aria-placeholder="以逗号分隔，例如：明天,你好"></el-input>
-                    </el-form-item>
+                    </el-form-item>-->
                 </el-form>
             </el-header>
-            <el-main style="height: 68%">
+            <el-main style="height: 73%">
                 <mavon-editor style="height: 100%" ref="md" v-model="value" @imgAdd="$imgAdd" @change="change" @save="save" />
             </el-main>
             <el-footer style="height: 7%;padding-bottom: 2%">
@@ -55,19 +55,45 @@
         },
         methods:{
             save: function(value,render) {
+                this.html = render;
+                this.value = value;
+                console.log(this.html)
+                console.log(this.value)
                 /*alert(content.html);
                 alert(content.value)*/
-                this.html = render;
+                /*this.html = render;
+                this.value = value;
                 console.log(this.blog)
-                // console.log(this.html);
+                console.log(this.html);*/
             },
             submitBlog(){
-                console.log(this.blog)
-                this.$axios.post('http://localhost:8080/blogs/blogContent',this.blog).then(resp => {
-                    // this.owner = resp.data;
-                    console.log(resp);
-                }).catch(err => {
-                    console.log(err)
+                // 提交标签
+                this.$prompt('请输入博客标签,逗号分隔！', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消'/*,
+                    inputPattern: /[\w]+(?:\，[\w]*)?/,
+                    inputErrorMessage: '邮箱格式不正确'*/
+                }).then(({ value }) => {
+                    this.$message({
+                        type: 'success',
+                        message: '你的博客标签是: ' + value
+                    });
+                    this.blog.tags = value
+
+                    this.blog.contents = this.html
+                    this.blog.contentsMd = this.value
+                    console.log(this.blog)
+                    this.$axios.post('http://localhost:8080/blogs/blogContent',this.blog).then(resp => {
+                        // this.owner = resp.data;
+                        console.log(resp);
+                    }).catch(err => {
+                        console.log(err)
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消输入'
+                    });
                 });
             },
             // 将图片上传到服务器，返回地址替换到md中
@@ -87,6 +113,7 @@
             change(value, render){
                 // render 为 markdown 解析后的结果
                 this.html = render;
+                this.value = value;
             }
         },
         beforeMount() {
