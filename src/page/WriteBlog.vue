@@ -83,7 +83,7 @@
                     this.blog.contents = this.html
                     this.blog.contentsMd = this.value
                     console.log(this.blog)
-                    this.$axios.post('http://localhost:8080/blogs/blogContent',this.blog).then(resp => {
+                    this.$axios.post('http://www.monolog7.com:8080/blogs/blogContent',this.blog).then(resp => {
                         // this.owner = resp.data;
                         console.log(resp);
                     }).catch(err => {

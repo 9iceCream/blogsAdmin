@@ -80,7 +80,7 @@
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         console.log(this.registerInfo)
-                        this.$axios.post('http://localhost:8080/blogs/user',this.registerInfo).then(resp => {
+                        this.$axios.post('http://www.monolog7.com:8080/blogs/user',this.registerInfo).then(resp => {
                             if(resp.data.code!==0){
                                 this.$message({
                                     message: resp.data.message,

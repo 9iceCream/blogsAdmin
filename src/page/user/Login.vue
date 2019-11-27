@@ -59,7 +59,7 @@
                 //校验
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$axios.post('http://localhost:8080/blogs/login',this.loginInfo).then(resp => {
+                        this.$axios.post('http://www.monolog7.com:8080/blogs/login',this.loginInfo).then(resp => {
                             if(resp.data.code !== 0){
                                 this.$message({
                                     message: resp.data.message,
