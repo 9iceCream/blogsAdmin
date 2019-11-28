@@ -9,22 +9,22 @@
                         fixed
                         prop="title"
                         label="标题"
-                        width="150px">
+                        min-width="30%">
                 </el-table-column>
                 <el-table-column
-                        prop="id"
+                        prop="blogId"
                         label="ID"
-                        width="60px">
+                        min-width="15%">
                 </el-table-column>
                 <el-table-column
                         prop="info"
                         label="简介"
-                        width="200px">
+                        min-width="30%">
                 </el-table-column>
                 <el-table-column
                         prop="tags"
                         label="标签"
-                        width="150px">
+                        min-width="25%">
                 </el-table-column>
                 <el-table-column
                         fixed="right"

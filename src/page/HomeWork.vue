@@ -43,7 +43,7 @@
         width: 30%;
         height: 100px;
         border-radius: 4px;
-        background-color: #9fff2e;
+        background-color: #dce3eb;
         text-align: center;
         color: #fff;
         padding: 40px 20px;
