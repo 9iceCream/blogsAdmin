@@ -25,6 +25,7 @@
 </template>
 
 <script>
+    import {config} from '../config'
     export default {
         name: "BlogPage",
         data(){
@@ -53,7 +54,7 @@
         },
         beforeMount() {
             //加载具体博客信息
-            this.$axios.get('http://www.monolog7.com:8080/blogs/blogContent?blogId=' + this.$route.params.id,{}).then(resp => {
+            this.$axios.get(config.baseurl + '/blogs/blogContent?blogId=' + this.$route.params.id,{}).then(resp => {
                 console.log(resp)
                 this.blog = resp.data;
                 this.showCard = true;

@@ -9,7 +9,7 @@
             </transition>
             <transition name="el-fade-in">
                 <div class="transition-box">
-                    <el-link icon="el-icon-paperclip">博客管理</el-link>
+                    <el-link icon="el-icon-paperclip" @click = "manageBlogs">博客管理</el-link>
                 </div>
             </transition>
         </div>
@@ -26,7 +26,10 @@
         methods:{
             witerBlogs:function () {
                 this.$router.push({path:'/writeBlog'});
-            }
+            },
+            manageBlogs:function () {
+                this.$router.push({path:'/manageBlogs'});
+            },
         }
     }
 </script>

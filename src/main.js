@@ -21,6 +21,7 @@ router.beforeEach((to,from,next) => {
                 path: '/'
             })
         }*/
+        //www.monolog7.com//localhost
         axios.get('http://www.monolog7.com:8080/blogs/checkLogin',{}).then(resp => {
             if(resp.data.code !== 0){
                 console.log("未登录，跳转到首页")

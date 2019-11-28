@@ -31,6 +31,7 @@
 <script>
     import { mavonEditor } from 'mavon-editor';
     import 'mavon-editor/dist/css/index.css'
+    import {config} from '../config'
 
     export default {
         name: "WriteBlog",
@@ -83,7 +84,7 @@
                     this.blog.contents = this.html
                     this.blog.contentsMd = this.value
                     console.log(this.blog)
-                    this.$axios.post('http://www.monolog7.com:8080/blogs/blogContent',this.blog).then(resp => {
+                    this.$axios.post(config.baseurl + '/blogs/blogContent',this.blog).then(resp => {
                         // this.owner = resp.data;
                         console.log(resp);
                     }).catch(err => {

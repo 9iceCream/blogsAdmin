@@ -27,6 +27,7 @@
 </template>
 
 <script>
+    import {config} from '../config'
     export default {
         name: "HomeMainBlog",
         data(){
@@ -68,7 +69,7 @@
         },
         beforeMount() {
             //加载博主的所有博客数据
-            this.$axios.get('http://www.monolog7.com:8080/blogs/blogsInfo',{}).then(resp => {
+            this.$axios.get(config.baseurl + '/blogs/blogsInfo',{}).then(resp => {
                 console.log(resp)
                 if(resp.data.code == 1005){
                     this.$message("博客空空如也");
