@@ -10,6 +10,7 @@ import BlogPage from "../page/BlogPage.vue"
 import HomeWork from "../page/HomeWork.vue"
 import HomeAbout from "../page/HomeAbout.vue"
 import BlogsManage from "../page/BLogsManage.vue"
+import UpdateBlog from "../page/UpdateBlog.vue"
 
 var router = new VueRouter({
     routes:[
@@ -73,6 +74,13 @@ var router = new VueRouter({
                 {
                     path: '/homeAbout',
                     component: HomeAbout,
+                    meta: {
+                        requireAuth: true
+                    }
+                },
+                {
+                    path: '/blogUpdate/:id',
+                    component: UpdateBlog,
                     meta: {
                         requireAuth: true
                     }

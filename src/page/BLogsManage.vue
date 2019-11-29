@@ -61,12 +61,18 @@
             },
             handleEdit(index, row) {
                 console.log(index, row);
+                //打开博客编辑页面
+                var param = {
+                    blogId: row.blogId,
+                    ownerId: row.ownerId
+                }
+                this.$router.push("/blogUpdate/" + row.id);
             },
             handleDelete(index, row) {
                 console.log(index, row);
                 var deleteData = {
                     blogId: row.blogId,
-                    ownerId: row.ownerId,
+                    ownerId: row.ownerId
                 };
                 console.log(deleteData);
                 this.$axios.post(config.baseurl+'/blogs/deleteBlogContent',deleteData).then(resp => {
